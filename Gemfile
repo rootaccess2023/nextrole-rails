@@ -14,6 +14,8 @@ gem "jwt", "~> 2.7"         # JSON Web Tokens
 # Admin
 gem "activeadmin"
 gem "devise"
+gem "sprockets-rails"
+gem "sassc-rails"
 
 # CORS
 gem "rack-cors"
