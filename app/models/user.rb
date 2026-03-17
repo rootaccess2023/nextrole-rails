@@ -6,12 +6,20 @@ class User < ApplicationRecord
   validates :email,
             presence:   true,
             uniqueness: { case_sensitive: false },
-            format:     { with: URI::MailTo::EMAIL_REGEXP }
+            format:     { with: URI::MailTo::EMAIL_REGEXP, message: "is not a valid email" }
 
   validates :password,
             presence: true,
             length:   { minimum: 8 },
             if:       :password_digest_changed?
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["email", "created_at", "updated_at", "id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 
   private
 
