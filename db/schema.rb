@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_18_211932) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_18_213332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,25 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_18_211932) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "application_events", force: :cascade do |t|
+    t.bigint "job_application_id", null: false
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "event_type"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean "all_day"
+    t.string "location"
+    t.string "meeting_url"
+    t.text "notes"
+    t.string "status"
+    t.integer "reminder_minutes_before"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_application_id"], name: "index_application_events_on_job_application_id"
+    t.index ["user_id"], name: "index_application_events_on_user_id"
   end
 
   create_table "job_applications", force: :cascade do |t|
@@ -50,5 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_18_211932) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "application_events", "job_applications"
+  add_foreign_key "application_events", "users"
   add_foreign_key "job_applications", "users"
 end

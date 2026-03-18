@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :job_applications, dependent: :destroy
+  has_many :application_events, dependent: :destroy
 
   before_save :downcase_email
 
