@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 
       # Job Applications
       get    "job_applications",     to: "job_applications#index"
-      get    "job_applications/:id", to: "job_applications#show"
-      post   "job_applications",     to: "job_applications#create"
-      patch  "job_applications/:id", to: "job_applications#update"
-      delete "job_applications/:id", to: "job_applications#destroy"
+      get    "job_applications/:slug", to: "job_applications#show"
+      post   "job_applications",      to: "job_applications#create"
+      patch  "job_applications/:slug", to: "job_applications#update"
+      delete "job_applications/:slug", to: "job_applications#destroy"
     end
   end
 

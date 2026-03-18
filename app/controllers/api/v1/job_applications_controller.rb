@@ -37,7 +37,7 @@ class Api::V1::JobApplicationsController < Api::V1::BaseController
   private
 
   def set_job_application
-    @job_application = current_user.job_applications.find(params[:id])
+    @job_application = current_user.job_applications.find_by!(slug: params[:slug])
   end
 
   def job_application_params
