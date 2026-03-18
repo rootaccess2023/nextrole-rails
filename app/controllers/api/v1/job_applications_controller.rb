@@ -4,18 +4,18 @@ class Api::V1::JobApplicationsController < Api::V1::BaseController
 
   def index
     job_applications = current_user.job_applications.order(created_at: :desc)
-    render json: job_applications, status: :ok
+    render json: { job_applications: job_applications }, status: :ok
   end
 
   def show
-    render json: @job_application, status: :ok
+    render json: { job_application: @job_application }, status: :ok
   end
 
   def create
     job_application = current_user.job_applications.new(job_application_params)
 
     if job_application.save
-      render json: job_application, status: :created
+      render json: { job_application: job_application }, status: :created
     else
       render json: { errors: job_application.errors.full_messages }, status: :unprocessable_content
     end
@@ -23,7 +23,7 @@ class Api::V1::JobApplicationsController < Api::V1::BaseController
 
   def update
     if @job_application.update(job_application_params)
-      render json: @job_application, status: :ok
+      render json: { job_application: @job_application }, status: :ok
     else
       render json: { errors: @job_application.errors.full_messages }, status: :unprocessable_content
     end
