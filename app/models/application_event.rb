@@ -5,7 +5,7 @@ class ApplicationEvent < ApplicationRecord
   before_validation :normalize_event_type
 
   validates :title, presence: true
-  validates :event_type, presence: true, inclusion: { in: %w[assessment interview] }
+  validates :event_type, presence: true, inclusion: { in: %w[assessment interview stage_change] }
 
   private
 
