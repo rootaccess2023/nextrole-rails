@@ -1,4 +1,6 @@
 class ApplicationEvent < ApplicationRecord
+  include Sluggable
+  
   belongs_to :job_application
   belongs_to :user
 

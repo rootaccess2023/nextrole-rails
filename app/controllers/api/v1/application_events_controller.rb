@@ -19,7 +19,7 @@ class Api::V1::ApplicationEventsController < Api::V1::BaseController
   end
 
   def update
-    event = @job_application.application_events.find(params[:id])
+    event = @job_application.application_events.find(params[:event_slug])
 
     if event.update(event_params)
       render json: { event: event }, status: :ok
@@ -29,7 +29,7 @@ class Api::V1::ApplicationEventsController < Api::V1::BaseController
   end
 
   def destroy
-    event = @job_application.application_events.find(params[:id])
+    event = @job_application.application_events.find(params[:event_slug])
     event.destroy
     head :no_content
   end

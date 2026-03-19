@@ -20,8 +20,8 @@ Rails.application.routes.draw do
       # Application Events
       get    "job_applications/:slug/events",     to: "application_events#index"
       post   "job_applications/:slug/events",     to: "application_events#create"
-      patch  "job_applications/:slug/events/:id", to: "application_events#update"
-      delete "job_applications/:slug/events/:id", to: "application_events#destroy"
+      patch  "job_applications/:slug/events/:event_slug", to: "application_events#update"
+      delete "job_applications/:slug/events/:event_slug", to: "application_events#destroy"
     end
   end
 
