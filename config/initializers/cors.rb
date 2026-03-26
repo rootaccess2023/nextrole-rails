@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*"   # Tighten this to your domain in production
+    origins "*", "https://nextrole-app.onrender.com"
 
     resource "*",
             headers: :any,
