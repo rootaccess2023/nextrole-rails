@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*", "https://nextrole-app.onrender.com"
+    origins "https://nextrole-rails.fly.dev", "http://localhost:3000"
 
     resource "*",
             headers: :any,
