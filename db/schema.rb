@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_17_164443) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_25_215916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,51 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_17_164443) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "application_events", force: :cascade do |t|
+    t.bigint "job_application_id", null: false
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "event_type"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean "all_day"
+    t.string "location"
+    t.string "meeting_url"
+    t.text "notes"
+    t.string "status"
+    t.integer "reminder_minutes_before"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.integer "salary_min"
+    t.integer "salary_max"
+    t.string "salary_currency"
+    t.string "salary_period"
+    t.integer "bonus"
+    t.string "equity"
+    t.datetime "offer_expires_at"
+    t.string "offer_status", default: "pending"
+    t.string "employment_type"
+    t.index ["job_application_id"], name: "index_application_events_on_job_application_id"
+    t.index ["user_id"], name: "index_application_events_on_user_id"
+  end
+
+  create_table "job_applications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "company"
+    t.string "job_title"
+    t.string "job_url"
+    t.string "location"
+    t.string "source"
+    t.string "stage"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_job_applications_on_slug", unique: true
+    t.index ["user_id"], name: "index_job_applications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -34,4 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_17_164443) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "application_events", "job_applications"
+  add_foreign_key "application_events", "users"
+  add_foreign_key "job_applications", "users"
 end
