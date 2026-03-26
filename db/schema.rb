@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_19_095928) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_25_215916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_19_095928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "salary_min"
+    t.integer "salary_max"
+    t.string "salary_currency"
+    t.string "salary_period"
+    t.integer "bonus"
+    t.string "equity"
+    t.datetime "offer_expires_at"
+    t.string "offer_status", default: "pending"
+    t.string "employment_type"
     t.index ["job_application_id"], name: "index_application_events_on_job_application_id"
     t.index ["user_id"], name: "index_application_events_on_user_id"
   end
