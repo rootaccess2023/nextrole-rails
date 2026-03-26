@@ -51,7 +51,10 @@ class Api::V1::JobApplicationsController < Api::V1::BaseController
       :location,
       :source,
       :stage,
-      :notes
+      :notes,
+      :employment_type,
+      :job_description
+      
     )
   end
 end
