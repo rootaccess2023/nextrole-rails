@@ -7,9 +7,19 @@ module Api
       def user
         render json: {
           user: {
+            # Core user data
             id:                       current_user.id,
             email:                    current_user.email,
             created_at:               current_user.created_at,
+            first_name:               current_user.first_name,
+            last_name:                current_user.last_name,
+            target_role:              current_user.target_role,
+            target_location:          current_user.target_location,
+            employment_type:          current_user.employment_type,
+            follow_up_days:           current_user.follow_up_days,
+            phone:                    current_user.phone,
+            linkedin_url:             current_user.linkedin_url,
+            portfolio_url:            current_user.portfolio_url,
 
             # Phase 1 additions
             weekly_goal:              current_user.weekly_goal,
