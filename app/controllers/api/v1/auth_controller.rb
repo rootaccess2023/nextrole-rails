@@ -34,7 +34,7 @@ module Api
       private
 
       def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation)
+        params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :target_role, :target_location, :employment_type, :follow_up_days, :phone, :linkedin_url, :portfolio_url)
       end
 
       def user_json(user)
