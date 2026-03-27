@@ -46,6 +46,12 @@ module Api
           :first_name,
           :target_role,
           :weekly_goal,
+          :target_location,
+          :employment_type,
+          :follow_up_days,
+          :phone,
+          :linkedin_url,
+          :portfolio_url
         )
       end
 
