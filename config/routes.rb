@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       # Auth
       post   "signup",  to: "auth#signup"
       post   "login",   to: "auth#login"
-      get    "me",      to: "users#me"
+      get    "user",      to: "users#user"
+      patch  "user",      to: "users#update"
+      delete "user",      to: "users#destroy"
       delete "logout",  to: "auth#logout"
 
       # Job Applications

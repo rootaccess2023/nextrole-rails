@@ -15,6 +15,8 @@ class User < ApplicationRecord
             length:   { minimum: 8 },
             if:       :password_digest_changed?
 
+  validates :weekly_goal, numericality: { greater_than: 0, less_than_or_equal_to: 20 }, allow_nil: true
+
   private
 
   def downcase_email

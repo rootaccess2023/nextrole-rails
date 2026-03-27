@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_26_213633) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_27_092741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,13 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_26_213633) do
     t.string "slug", null: false
     t.string "employment_type"
     t.text "job_description"
+    t.string "contact_name"
+    t.string "contact_email"
+    t.string "contact_linkedin_url"
+    t.datetime "last_contacted_at"
+    t.datetime "application_deadline"
+    t.datetime "archived_at"
+    t.string "closed_reason"
     t.index ["slug"], name: "index_job_applications_on_slug", unique: true
     t.index ["user_id"], name: "index_job_applications_on_user_id"
   end
@@ -78,6 +85,9 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_26_213633) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "weekly_goal", default: 3
+    t.datetime "last_active_at"
+    t.datetime "onboarding_completed_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
