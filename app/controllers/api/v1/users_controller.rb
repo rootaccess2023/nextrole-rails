@@ -43,8 +43,9 @@ module Api
 
       def user_params
         params.require(:user).permit(
+          :first_name,
+          :target_role,
           :weekly_goal,
-          :onboarding_completed_at
         )
       end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_27_092741) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_27_154358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_27_092741) do
     t.integer "weekly_goal", default: 3
     t.datetime "last_active_at"
     t.datetime "onboarding_completed_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "target_role"
+    t.string "target_location"
+    t.string "employment_type"
+    t.integer "follow_up_days", default: 7
+    t.string "phone"
+    t.string "linkedin_url"
+    t.string "portfolio_url"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
