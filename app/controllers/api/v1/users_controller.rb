@@ -84,23 +84,15 @@ module Api
       end
 
       def onboarding_steps
-        [
-          {
-            key:       "add_first_application",
-            label:     "Add your first application",
-            completed: current_user.job_applications.exists?
-          },
-          {
-            key:       "set_weekly_goal",
-            label:     "Set a weekly goal",
-            completed: current_user.weekly_goal.present?
-          },
-          {
-            key:       "complete_onboarding",
-            label:     "Complete your profile",
-            completed: current_user.onboarding_completed_at.present?
-          }
-        ]
+        {
+          add_first_application: current_user.job_applications.exists?,
+          set_weekly_goal:        current_user.weekly_goal.present?,
+          complete_profile:       [
+            current_user.first_name,
+            current_user.target_role,
+            current_user.weekly_goal
+          ].all?(&:present?),
+        }
       end
     end
   end

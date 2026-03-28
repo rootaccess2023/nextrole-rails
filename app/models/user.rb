@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :application_events, dependent: :destroy
 
   before_save :downcase_email
-  before_save :sync_onboarding_completed_at
 
   validates :email,
             presence:   true,
@@ -24,13 +23,4 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
-  def sync_onboarding_completed_at
-    required_profile_fields_filled = first_name.present? && weekly_goal.present? && target_role.present?
-
-    if required_profile_fields_filled
-      self.onboarding_completed_at ||= Time.current
-    else
-      self.onboarding_completed_at = nil
-    end
-  end
 end
